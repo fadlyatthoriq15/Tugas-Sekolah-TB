@@ -1,15 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet maxime, voluptatem nobis, a magnam alias quae veritatis recusandae fugit assumenda, doloribus soluta! Ipsa nobis a distinctio similique commodi impedit facere.</p>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <script>
-        var s = 12;
-    </script>
-</body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+<style>
+      .containeer{
+        text-align: center;
+        width: 100%;
+        font-family: 'Times New Roman', Times, serif;
+        padding-top: 50px;
+        padding-right: 30px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+      }
+        .container{
+            width: 600px;
+            height: 620px;
+            border-style: double;
+            font-family: 'Times New Roman', Times, serif;
+            border: 2,2px solid black;
+            outline-color: grey;
+            outline-width: thin;
+        }
+</style>
+
+</head>
+  <body>
+
+    <div class="container">
+        <div class="form-group">
+            <label for="kodeproduk">Kode Produk</label>
+            <input type="text" class="form-control" id="txt_kodeproduk">
+          </div>
+  
+          <div class="form-group">
+              <label for="namaproduk">Nama Produk</label>
+              <input type="text" class="form-control" id="txt_namaproduk">
+            </div>
+  
+            <div class="form-group">
+              <label for="hargaproduk">Harga Produk</label>
+              <input type="number" class="form-control" id="txt_hargaproduk">
+            </div>
+  
+            <label for="satuanproduk">Satuan Produk</label>
+      <select class="form-control" id="txt_satuanproduk">
+        <option value="plastik">Plastik</option>
+        <option value="gelas">Gelas</option>
+        <option value="piring">Piring</option>
+        <option value="mangkok">Mangkok</option>
+      </select>
+  
+            <label for="kategoriproduk">Kategori Produk</label>
+      <select class="form-control" id="txt_kategoriproduk">
+        <option value="minumandingin">Minuman dingin</option>
+        <option value="minumanhangat">Minuman hangat</option>
+        <option value="makananpembuka">Makanan pembuka</option>
+        <option value="makananberat">Makanan berat</option>
+        <option value="makananpenutup">Makanan penutup</option>
+      </select>
+  
+      <div class="form-group">
+        <label for="urlgambar">URL Gambar</label>
+        <input type="text" class="form-control" id="txt_urlgambar">
+      </div>
+  
+      <div class="form-group">
+        <label for="stockawal">Stock Awal</label>
+        <input type="text" class="form-control" id="txt_stockawal">
+      </div>
+      
+      <button class="btn btn-dark mt-6" onclick="add()">Simpan</button>
+    </div>
+  
+      <div class="containeer">
+      <table class="table mt-4">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Kode Produk</th>
+              <th scope="col">Nama Produk</th>
+              <th scope="col">Harga Produk</th>
+              <th scope="col">Satuan Produk</th>
+              <th scope="col">Kategori Produk</th>
+              <th scope="col">Stok Awal</th>
+              <th scope="col">Gambar</th>
+              <th scope="col">Modify</th>
+            </tr>
+          </thead>
+          <tbody id="tampildata">
+            
+          </tbody>
+        </table>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
 </html>
