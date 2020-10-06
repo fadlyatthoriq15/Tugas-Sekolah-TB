@@ -35,48 +35,43 @@
 
     <div class="container">
         <div class="form-group">
-            <label for="kodeproduk">Kode Produk</label>
-            <input type="text" class="form-control" id="txt_kodeproduk">
+            <label for="namapembeli">Nama Pembeli</label>
+            <input type="text" class="form-control" id="txt_namapembeli">
           </div>
   
-          <div class="form-group">
-              <label for="namaproduk">Nama Produk</label>
-              <input type="text" class="form-control" id="txt_namaproduk">
-            </div>
-  
-            <div class="form-group">
-              <label for="hargaproduk">Harga Produk</label>
-              <input type="number" class="form-control" id="txt_hargaproduk">
-            </div>
-  
-            <label for="satuanproduk">Satuan Produk</label>
-      <select class="form-control" id="txt_satuanproduk">
-        <option value="plastik">Plastik</option>
-        <option value="gelas">Gelas</option>
-        <option value="piring">Piring</option>
-        <option value="mangkok">Mangkok</option>
-      </select>
-  
-            <label for="kategoriproduk">Kategori Produk</label>
-      <select class="form-control" id="txt_kategoriproduk">
-        <option value="minumandingin">Minuman dingin</option>
-        <option value="minumanhangat">Minuman hangat</option>
-        <option value="makananpembuka">Makanan pembuka</option>
-        <option value="makananberat">Makanan berat</option>
-        <option value="makananpenutup">Makanan penutup</option>
-      </select>
-  
+          <label for="namaproduk">Nama Produk</label>
+          <select class="form-control" id="txt_namaproduk">
+            <option value="PS3">PS3</option>
+            <option value="PS4">PS4</option>
+            <option value="PS2">PS2</option>
+            <option value="Xbox">Xbox</option>
+          </select>
+
       <div class="form-group">
-        <label for="urlgambar">URL Gambar</label>
-        <input type="text" class="form-control" id="txt_urlgambar">
+        <label for="berapabanyak">Berapa Banyak</label>
+        <input type="number" class="form-control" id="txt_berapabanyak">
       </div>
   
       <div class="form-group">
-        <label for="stockawal">Stock Awal</label>
-        <input type="text" class="form-control" id="txt_stockawal">
+        <label for="hargaproduk">Harga Awal</label>
+        <input type="number" class="form-control" id="txt_hargaawal">
+      </div>
+
+      <div class="form-group">
+        <label for="diskon">Diskon</label>
+        <input type="text" class="form-control" id="txt_diskon">
+      </div>
+  
+      <div class="form-group">
+        <label for="hargaakhir">Harga Akhir</label>
+        <input type="text" class="form-control" id="txt_hargaakhir">
       </div>
       
-      <button class="btn btn-dark mt-6" onclick="add()">Simpan</button>
+      <button class="btn btn-dark mt-6" onclick="add()">Simpan</button><br>
+      <form action="List Harga.html">
+        <input type="submit" class="btn btn-primary mt-6" id="submit" value="List Harga">
+      </form>
+
     </div>
   
       <div class="containeer">
@@ -84,14 +79,12 @@
           <thead>
             <tr>
               <th scope="col">No</th>
-              <th scope="col">Kode Produk</th>
+              <th scope="col">Nama Pembeli</th>
               <th scope="col">Nama Produk</th>
-              <th scope="col">Harga Produk</th>
-              <th scope="col">Satuan Produk</th>
-              <th scope="col">Kategori Produk</th>
-              <th scope="col">Stok Awal</th>
-              <th scope="col">Gambar</th>
-              <th scope="col">Modify</th>
+              <th scope="col">Berapa Banyak</th>
+              <th scope="col">Harga Awal</th>
+              <th scope="col">Diskon</th>
+              <th scope="col">Harga Akhir</th>
             </tr>
           </thead>
           <tbody id="tampildata">
@@ -99,6 +92,63 @@
           </tbody>
         </table>
       </div>
+
+
+
+      <script>
+        var namapembeli = []
+        var namaproduk = []
+        var berapabanyak = []
+        var hargaawal = []
+        var diskon = []
+        var hargaakhir = []
+        var tampil = document.getElementById('tampildata')
+
+        function showData() {
+            tampil.innerHTML = ""
+
+            for(i = 0; i<namapembeli.length; i++){
+                var nodata = i+1
+
+
+                tampil.innerHTML += "<tr>"+
+                    "<th>"+nodata+"</th>"+
+                    "<th>"+namapembeli[i]+"</th>"+
+                    "<td>"+namaproduk[i]+"</td>"+
+                    "<td>"+berapabanyak[i]+"</td>"+
+                    "<td>"+hargaawal[i]+"</td>"+
+                    "<td>"+diskon[i]+"</td>"+
+                    "<td>"+hargaakhir[i]+"</td>"+
+                    "<td>"+
+                      "<button class='btnn btn-warning' data-toggle='modal' data-target='#modal' onclick='editdata(" +i+")'>Edit</button>" +
+                      "<button class='btnn btn-danger' onclick = 'hapus("+i+")' >Hapus</button>"+
+                    "</td>"+
+                "</tr>"
+            }
+
+        }
+
+        showData()
+
+        function add() {
+            var pembelibaru = document.getElementById('txt_namapembeli').value
+            var produkbaru = document.getElementById('txt_namaproduk').value
+            var banyakbaru = document.getElementById('txt_berapabanyak').value
+            var awalbaru = document.getElementById('txt_hargaawal').value
+            var diskonbaru = document.getElementById('txt_diskon').value
+            var akhirbaru = document.getElementById('txt_hargaakhir').value
+
+            namapembeli.push(pembelibaru)
+            namaproduk.push(produkbaru)
+            berapabanyak.push(banyakbaru)
+            hargaawal.push(awalbaru)
+            diskon.push(diskonbaru)
+            hargaakhir.push(akhirbaru)
+
+            showData()
+
+        }
+      </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
