@@ -21,7 +21,7 @@
       }
         .container{
             width: 600px;
-            height: 500px;
+            height: 680px;
             border-style: double;
             font-family: 'Times New Roman', Times, serif;
             border: 2,2px solid black;
@@ -61,6 +61,16 @@
         <label for="hargaakhir">Harga Akhir</label>
         <input type="text" class="form-control" id="txt_hargaakhir">
       </div>
+
+      <div class="form-group">
+        <label for="totalbayar">Total Bayar</label>
+        <input type="text" class="form-control" id="txt_totalbayar">
+      </div>
+
+      <div class="form-group">
+        <label for="kembalian">Kembalian</label>
+        <input type="text" class="form-control" id="txt_kembalian">
+      </div>
       
       <button class="btn btn-dark" onclick="add()" onclick="hargaawaal()">Simpan</button>
       <form action="List Harga.html">
@@ -79,6 +89,8 @@
               <th scope="col">Berapa Banyak</th>
               <th scope="col">Harga Awal</th>
               <th scope="col">Harga Akhir</th>
+              <th scope="col">Total Bayar</th>
+              <th scope="col">Kembalian</th>
               <th scope="col">Modify</th>
             </tr>
           </thead>
@@ -96,6 +108,8 @@
         var berapabanyak = []
         var hargaawal = []
         var hargaakhir = []
+        var totalbayar = []
+        var kembalian = []
         var tampil = document.getElementById('tampildata')
 
         function showData() {
@@ -112,7 +126,10 @@
                     "<td>"+berapabanyak[i]+"</td>"+
                     "<td>"+hargaawal[i]+"</td>"+
                     "<td>"+hargaakhir[i]+"</td>"+
+                    "<td>"+totalbayar[i]+"</td>"+
+                    "<td>"+kembalian[i]+"</td>"+
                     "<td>"+
+                      "<button class='btnn btn-warning' data-toggle='modal' data-target='#modal' onclick='editdata(" +i+")'>Edit</button>" +
                       "<button class='btnn btn-danger' onclick = 'hapus("+i+")' >Hapus</button>"+
                     "</td>"+
                 "</tr>"
@@ -128,12 +145,16 @@
             var banyakbaru = document.getElementById('txt_berapabanyak').value
             var awalbaru = document.getElementById('txt_hargaawal').value
             var akhirbaru = document.getElementById('txt_hargaakhir').value
+            var bayarbaru = document.getElementById('txt_totalbayar').value
+            var kembalianbaru = document.getElementById('txt_kembalian').value
 
             namapembeli.push(pembelibaru)
             namaproduk.push(produkbaru)
             berapabanyak.push(banyakbaru)
             hargaawal.push(awalbaru)
             hargaakhir.push(akhirbaru)
+            totalbayar.push(bayarbaru)
+            kembalian.push(kembalianbaru)
 
             showData()
 
@@ -151,18 +172,18 @@
         }
 
         function hargaawaal() {
-          var hargaawaal;
+          var hargaawal;
 
           if (berapabanyak >= 2, namaproduk = "PS3") {
-            hargaawaal = berapabanyak * 2500000
+            hargaawal = berapabanyak * 2500000
           } else if (berapabanyak >= 2, namaproduk = "PS4"){
-            hargaawaal = berapabanyak * 5000000
+            hargaawal = berapabanyak * 5000000
           } else if (berapabanyak >= 2, namaproduk = "xbox360"){
-            hargaawaal = berapabanyak * 3500000
+            hargaawal = berapabanyak * 3500000
           } else if (berapabanyak >= 2, namaproduk = "PS2"){
-            hargaawaal = berapabanyak * 500000
+            hargaawal = berapabanyak * 500000
           }else{
-            hargaawaal
+            hargaawal
           }
 
 
