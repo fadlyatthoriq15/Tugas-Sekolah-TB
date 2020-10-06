@@ -21,7 +21,7 @@
       }
         .container{
             width: 600px;
-            height: 770px;
+            height: 700px;
             border-style: double;
             font-family: 'Times New Roman', Times, serif;
             border: 2,2px solid black;
@@ -86,7 +86,6 @@
               <th scope="col">Harga Akhir</th>
               <th scope="col">Pembayaran</th>
               <th scope="col">Kembalian</th>
-              <th scope="col">Total</th>
               <th scope="col">Modify</th>
             </tr>
           </thead>
@@ -99,14 +98,12 @@
 
 
       <script>
-        var namapembeli = []
-        var namaproduk = []
-        var berapabanyak = []
-        var hargaawal = []
-        var hargaakhir = []
-        var pembayaran = []
-        var kembalian = []
-        var total = []
+        var namapembeli = ["Fadly Atthoriq"]
+        var namaproduk = ["PS3"]
+        var berapabanyak = ["2"]
+        var hargaawal = ["1500000"]
+        var hargaakhir = ["3000000"]
+        var pembayaran = ["3100000"]
         var tampil = document.getElementById('tampildata')
 
         function showData() {
@@ -114,13 +111,13 @@
 
             for(i = 0; i<namapembeli.length; i++){
                 var nodata = i+1
-
+                const matauang='RP. '
                 var txt_berapabanyak = Number(berapabanyak[i])
                 if (txt_berapabanyak >= 2){
-                  var total = Number(hargaawal[i]) * Number(0.20)
+                  var total = Number(hargaakhir[i]) * Number(0.50)
                       var kembalian = Number(pembayaran[i]) - Number(hargaakhir)
                 }else{
-                  var total = Number(hargaawal[i])
+                  var total = Number(hargaakhir[i])
                       var kembalian = Number(pembayaran[i]) - Number(hargaakhir)
                 }
 
@@ -129,11 +126,10 @@
                     "<th>"+namapembeli[i]+"</th>"+
                     "<td>"+namaproduk[i]+"</td>"+
                     "<td>"+berapabanyak[i]+"</td>"+
-                    "<td>"+hargaawal[i]+"</td>"+
-                    "<td>"+hargaakhir[i]+"</td>"+
-                    "<td>"+pembayaran[i]+"</td>"+
-                    "<td>"+kembalian+"</td>"+
-                    "<td>"+total+"</td>"+
+                    "<td>"+ matauang + hargaawal[i]+"</td>"+
+                    "<td>"+ matauang +hargaakhir[i]+"</td>"+
+                    "<td>"+ matauang +pembayaran[i]+"</td>"+
+                    "<td>"+ matauang +kembalian+"</td>"+
                     "<td>"+
                       "<button class='btnn btn-warning' data-toggle='modal' data-target='#modal' onclick='editdata(" +i+")'>Edit</button>" +
                       "<button class='btnn btn-danger' onclick = 'hapus("+i+")' >Hapus</button>"+
