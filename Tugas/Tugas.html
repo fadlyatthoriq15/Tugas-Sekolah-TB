@@ -144,10 +144,10 @@
   
           <label for="namaproduk">Nama Produk</label>
           <select class="form-control" id="txt_namaproduk">
-            <option value="PS3">PS3</option>
-            <option value="PS4">PS4</option>
-            <option value="PS2">PS2</option>
-            <option value="xbox360">Xbox360</option>
+            <option value="PS3" id="ps3">PS3</option>
+            <option value="PS4" id="ps4">PS4</option>
+            <option value="PS2" id="ps2">PS2</option>
+            <option value="xbox360" id="xbox">Xbox360</option>
           </select>
 
       <div class="form-group">
@@ -158,9 +158,11 @@
       <div class="form-group">
         <label for="hargaproduk">Harga Awal</label>
         <input type="" class="form-control" id="txt_hargaawal">
+      </div>
+
+      <div class="form-group">
         <label for="diskon">Diskon</label>
-        <input type="text" class="form-control" id="diskon"><br>
-        <div><button class="btn btn-danger" onclick="tambah()">Total</button></div>
+        <input type="" class="form-control" id="chDiscount">
       </div>
   
       <div class="form-group">
@@ -189,10 +191,9 @@
               <th scope="col">Nama Produk</th>
               <th scope="col">Berapa Banyak</th>
               <th scope="col">Harga Awal</th>
-              <th scope="col">Harga Akhir</th>
+              <th scope="col">Total</th>
               <th scope="col">Pembayaran</th>
               <th scope="col">Kembalian</th>
-              <th scope="col">Total</th>
               <th scope="col">Modify</th>
             </tr>
           </thead>
@@ -204,6 +205,70 @@
 
 
 
+          <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+          <div class="form-group">
+              <label for="namapembeli">Nama Pembeli</label>
+              <input type="text" class="form-control" id="modalpembeli" >
+          </div>
+
+          <label for="namaproduk">Nama Produk</label>
+          <select class="form-control" id="modalnama">
+            <option value="PS3" id="ps3">PS3</option>
+            <option value="PS4" id="ps4">PS4</option>
+            <option value="PS2" id="ps2">PS2</option>
+            <option value="xbox360" id="xbox">Xbox360</option>
+          </select>
+
+      <div class="form-group">
+        <label for="berapabanyak">Berapa Banyak</label>
+        <input type="number" class="form-control" id="modalbanyak">
+      </div>
+  
+      <div class="form-group">
+        <label for="hargaproduk">Harga Awal</label>
+        <input type="" class="form-control" id="modalawal">
+      </div>
+
+      <div class="form-group">
+        <label for="diskon">Diskon</label>
+        <input type="" class="form-control" id="modaldiskon">
+      </div>
+  
+      <div class="form-group">
+        <label for="total">Total</label>
+        <input type="text" class="form-control" id="modaltotal">
+      </div>
+
+      <div class="form-group">
+        <label for="pembayaran">Pembayaran</label>
+        <input type="text" class="form-control" id="modalpembayaran">
+      </div>
+  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal">Kembali</button>
+              <button type="button" class="btn btn-primary" onclick="datasimpan()" data-dismiss="modal">Ganti</button>
+            </div>
+          </div>
+        </div>
+       </div>
+     </div>
+   </div>
+ 
+  </section>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script>
         var namapembeli = ["Fadly Atthoriq"]
         var namaproduk = ["PS3"]
@@ -213,7 +278,6 @@
         var total = ["3000000"]
         var pembayaran = ["3100000"]
         var kembalian = [""]
-        var total = [""]
         var tampil = document.getElementById('tampildata')
 
         function showData() {
@@ -226,12 +290,21 @@
 
                 var txt_berapabanyak = Number(berapabanyak[i])
                 if (txt_berapabanyak >= 2){
-                  var total = Number(total[i]) * Number(0.50)
+                  var totall = Number(total[i]) * Number(0.50)
                       var kembalian = Number(pembayaran[i]) - Number(total[i])
                 }else{
-                  var total = Number(total[i])
+                  var totall = Number(total[i])
                       var kembalian = Number(pembayaran[i]) - Number(total[i])
                 }
+
+                $(document).on("change keyup blur", "#chDiscount", function() {
+                  var main = $('#txt_hargaawal').val();
+                  var disc = $('#chDiscount').val();
+                  var dec = (disc / 100).toFixed(2); //its convert 10 into 0.10
+                  var mult = main * dec; // gives the value for subtract from main value
+                  var discont = main - mult;
+                  $('#txt_total').val(discont);
+              });
             
 
 
@@ -245,7 +318,6 @@
                     "<td>"+ matauang +total[i]+"</td>"+
                     "<td>"+ matauang +pembayaran[i]+"</td>"+
                     "<td>"+ matauang +kembalian+"</td>"+
-                    "<td>"+ matauang +total+"</td>"+
                     "<td>"+
                       "<button class='btnn btn-warning' data-toggle='modal' data-target='#modal' onclick='editdata(" +i+")'>Edit</button>" +
                       "<button class='btnn btn-danger' onclick = 'hapus("+i+")' >Hapus</button>"+
@@ -288,6 +360,41 @@
           showData()
 
         }
+        var index = []
+
+          function editdata(i) {
+            document.getElementById('modalpembeli').value = namapembeli[i]
+            document.getElementById('modalnama').value = namaproduk[i]
+            document.getElementById('modalbanyak').value = berapabanyak[i]
+            document.getElementById('modalawal').value = hargaawal[i] 
+            document.getElementById('modaldiskon').value = diskon[i]
+            document.getElementById('modaltotal').value = total[i]
+            document.getElementById('modalpembayaran').value = pembayaran[i]
+
+            index.push(i)
+          }
+
+          function datasimpan() {
+            var simpanpembeli = document.getElementById('modalpembeli').value
+            var simpannama = document.getElementById('modalnama').value
+            var simpanbanyak = document.getElementById('modalbanyak').value
+            var simpanawal = document.getElementById('modalawal').value
+            var simpandiskon = document.getElementById('modaldiskon').value 
+            var simpantotal = document.getElementById('modaltotal').value 
+            var simpanpembayaran = document.getElementById('modalpembayaran').value 
+
+            namapembeli[index] = simpanpembeli
+            namaproduk[index] = simpannama
+            berapabanyak[index] = simpanbanyak
+            hargaawal[index] = simpanawal
+            diskon[index] = simpandiskon
+            total[index] = simpantotal
+            pembayaran[index] = simpanpembayaran
+
+            showData()
+            index.pop()
+          }
+          showData()
       </script>
       
 
