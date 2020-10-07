@@ -36,8 +36,8 @@
         }
         .flip-card {
         background-color: transparent;
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
         perspective: 1000px;
         }
 
@@ -75,6 +75,37 @@
         }
 </style>
 
+<script src="http://code.jquery.com/jquery-2.1.4.js%22%3E</script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#txt_berapabanyak").keyup(function(){ 
+        var berat3  = parseInt($("#txt_berapabanyak").val());
+        var harga3 = berat3 * 6000;
+        $("#harga").val(harga3); 
+      }); 
+
+      $("#txt_berapabanyak").keyup(function(){ 
+        var berat2 = parseInt($("#txt_berapabanyak").val());
+        var harga2 = parseInt($("#txt_hargaawal").val())
+        var diskon2 
+        if (berat2>20) {
+          diskon2 = 15
+        }else{
+          diskon2 = 0
+        }
+        ;
+        $("#diskon").val(diskon2); 
+      });
+
+      $("#txt_berapabanyak").keyup(function(){ 
+        var hargaawall  = parseInt($("#txt_hargaawal").val());
+        var diskonn  = parseInt($("#txt_diskon").val());
+        var totall = hargaawall - (hargaawall*(diskonn/100));
+        $("#txt_total").val(totall); 
+      }); 
+    }); 
+  </script>
+
 </head>
   <body>
 
@@ -103,7 +134,7 @@
           </li>
           <li style="float: right;">
               <div class="flip-card">
-                  <div class="flip-card-inner">
+                  <div class="flip-card-inngi er">
                     <div class="flip-card-front">
                         <p>Playstation 4</p>
                       <img src="p4.jpg" alt="Avatar" style="width:300px;height:300px;">
@@ -173,22 +204,23 @@
       <div class="form-group">
         <label for="hargaproduk">Harga Awal</label>
         <input type="" class="form-control" id="txt_hargaawal">
+        <label for="diskon">Diskon</label>
+        <input type="text" class="form-control" id="diskon"><br>
+        <div><button class="btn btn-danger" onclick="tambah()">Total</button></div>
       </div>
   
       <div class="form-group">
-        <label for="hargaakhir">Harga Akhir</label>
-        <input type="text" class="form-control" id="txt_hargaakhir">
+        <label for="total">Total</label>
+        <input type="text" class="form-control" id="txt_total">
       </div>
 
       <div class="form-group">
         <label for="pembayaran">Pembayaran</label>
         <input type="text" class="form-control" id="txt_pembayaran">
       </div>
+
       
       <button class="btn btn-dark" onclick="add()">Simpan</button>
-      <form action="List Harga.html">
-        <input type="submit" class="btn btn-primary" id="submit" value="List Harga" style="float: right;">
-      </form>
 
     </div>
     
@@ -206,6 +238,7 @@
               <th scope="col">Harga Akhir</th>
               <th scope="col">Pembayaran</th>
               <th scope="col">Kembalian</th>
+              <th scope="col">Total</th>
               <th scope="col">Modify</th>
             </tr>
           </thead>
@@ -222,8 +255,11 @@
         var namaproduk = ["PS3"]
         var berapabanyak = ["2"]
         var hargaawal = ["1500000"]
-        var hargaakhir = ["3000000"]
+        var diskon = [""]
+        var total = ["3000000"]
         var pembayaran = ["3100000"]
+        var kembalian = [""]
+        var total = [""]
         var tampil = document.getElementById('tampildata')
 
         function showData() {
@@ -232,14 +268,19 @@
             for(i = 0; i<namapembeli.length; i++){
                 var nodata = i+1
                 const matauang='RP. '
+
+
                 var txt_berapabanyak = Number(berapabanyak[i])
                 if (txt_berapabanyak >= 2){
-                  var total = Number(hargaakhir[i]) * Number(0.50)
-                      var kembalian = Number(pembayaran[i]) - Number(hargaakhir[i])
+                  var total = Number(total[i]) * Number(0.50)
+                      var kembalian = Number(pembayaran[i]) - Number(total[i])
                 }else{
-                  var total = Number(hargaakhir[i])
-                      var kembalian = Number(pembayaran[i]) - Number(hargaakhir[i])
+                  var total = Number(total[i])
+                      var kembalian = Number(pembayaran[i]) - Number(total[i])
                 }
+            
+
+
 
                 tampil.innerHTML += "<tr>"+
                     "<th>"+nodata+"</th>"+
@@ -247,9 +288,10 @@
                     "<td>"+namaproduk[i]+"</td>"+
                     "<td>"+berapabanyak[i]+"</td>"+
                     "<td>"+ matauang + hargaawal[i]+"</td>"+
-                    "<td>"+ matauang +hargaakhir[i]+"</td>"+
+                    "<td>"+ matauang +total[i]+"</td>"+
                     "<td>"+ matauang +pembayaran[i]+"</td>"+
                     "<td>"+ matauang +kembalian+"</td>"+
+                    "<td>"+ matauang +total+"</td>"+
                     "<td>"+
                       "<button class='btnn btn-warning' data-toggle='modal' data-target='#modal' onclick='editdata(" +i+")'>Edit</button>" +
                       "<button class='btnn btn-danger' onclick = 'hapus("+i+")' >Hapus</button>"+
@@ -266,14 +308,14 @@
             var produkbaru = document.getElementById('txt_namaproduk').value
             var banyakbaru = document.getElementById('txt_berapabanyak').value
             var awalbaru = document.getElementById('txt_hargaawal').value
-            var akhirbaru = document.getElementById('txt_hargaakhir').value
+            var akhirbaru = document.getElementById('txt_total').value
             var bayarbaru = document.getElementById('txt_pembayaran').value
 
             namapembeli.push(pembelibaru)
             namaproduk.push(produkbaru)
             berapabanyak.push(banyakbaru)
             hargaawal.push(awalbaru)
-            hargaakhir.push(akhirbaru)
+            total.push(akhirbaru)
             pembayaran.push(bayarbaru)
 
 
@@ -286,14 +328,14 @@
             var hapusnamaproduk = namaproduk.splice(id,1)
             var hapusbanyak = berapabanyak.splice(id,1)
             var hapusawal = hargaawal.splice(id,1)
-            var hapusakhir = hargaakhir.splice(id,1)
+            var hapusakhir = total.splice(id,1)
             var hapusbayar = pembayaran.splice(id,1)
 
           showData()
 
         }
-
       </script>
+      
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
