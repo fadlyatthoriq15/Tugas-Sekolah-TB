@@ -143,11 +143,11 @@
           </div>
   
           <label for="namaproduk">Nama Produk</label>
-          <select class="form-control" id="txt_namaproduk">
-            <option value="PS3" id="ps3">PS3</option>
-            <option value="PS4" id="ps4">PS4</option>
-            <option value="PS2" id="ps2">PS2</option>
-            <option value="xbox360" id="xbox">Xbox360</option>
+          <select name="treatment[]" class="col-sm-12 select-item" multiple="multiple" id="txt_namaproduk">
+            <option value="PS3" data-price = "1500000">PS3</option>
+            <option value="PS4" data-price = "3000000">PS4</option>
+            <option value="PS2" data-price = "500000">PS2</option>
+            <option value="xbox360" data-price = "2000000">Xbox360</option>
           </select>
 
       <div class="form-group">
@@ -156,7 +156,7 @@
       </div>
   
       <div class="form-group">
-        <label for="hargaproduk">Harga Awal</label>
+        <label for="hargaawal">Harga Awal</label>
         <input type="" class="form-control" id="txt_hargaawal">
       </div>
 
@@ -224,10 +224,10 @@
 
           <label for="namaproduk">Nama Produk</label>
           <select class="form-control" id="modalnama">
-            <option value="PS3" id="ps3">PS3</option>
-            <option value="PS4" id="ps4">PS4</option>
-            <option value="PS2" id="ps2">PS2</option>
-            <option value="xbox360" id="xbox">Xbox360</option>
+            <option value="PS3">PS3</option>
+            <option value="PS4">PS4</option>
+            <option value="PS2">PS2</option>
+            <option value="xbox360">Xbox360</option>
           </select>
 
       <div class="form-group">
@@ -270,14 +270,15 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script>
-        var namapembeli = ["Fadly Atthoriq"]
-        var namaproduk = ["PS3"]
-        var berapabanyak = ["2"]
-        var hargaawal = ["1500000"]
-        var diskon = [""]
-        var total = ["3000000"]
-        var pembayaran = ["3100000"]
-        var kembalian = [""]
+
+        var namapembeli = []
+        var namaproduk = []
+        var berapabanyak = []
+        var hargaawal = []
+        var diskon = []
+        var total = []
+        var pembayaran = []
+        var kembalian = []
         var tampil = document.getElementById('tampildata')
 
         function showData() {
@@ -296,6 +297,17 @@
                   var totall = Number(total[i])
                       var kembalian = Number(pembayaran[i]) - Number(total[i])
                 }
+
+                $('.select-item').click(function() {
+                  var price = 0;
+                  $('option:selected', $(this)).each(function() {
+                      console.log($(this).data('price'));
+                      price += $(this).data('price');
+                  });
+                  $('#txt_hargaawal').val(hargaawal);
+                });
+
+            
 
                 $(document).on("change keyup blur", "#chDiscount", function() {
                   var main = $('#txt_hargaawal').val();
