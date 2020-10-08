@@ -269,8 +269,17 @@
 
   <script type="text/javascript">
 
-
+            $('#txt_namaproduk').click(function() {
+            var price = 0;
+            $('option:selected', $(this)).each(function() {
+                console.log($(this).data('price'));
+                price += $(this).data('price');
+            });
+            $('#txt_hargaawal').val(price);
+        });
             
+
+
             $(document).ready(function ()
 
                 {
