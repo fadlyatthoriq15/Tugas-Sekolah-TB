@@ -159,7 +159,7 @@
   
       <div class="form-group">
         <label for="hargaawal">Harga Awal</label>
-        <input type="" class="form-control" id="txt_hargaawal">
+        <input readonly type="" class="form-control" id="txt_hargaawal">
       </div>
 
       <div class="form-group">
@@ -169,7 +169,7 @@
   
       <div class="form-group">
         <label for="total">Total</label>
-        <input type="text" class="form-control" id="txt_total">
+        <input readonly type="text" class="form-control" id="txt_total">
       </div>
 
       <div class="form-group">
@@ -240,7 +240,7 @@
   
       <div class="form-group">
         <label for="hargaproduk">Harga Awal</label>
-        <input type="" class="form-control" id="modalawal">
+        <input readonly type="" class="form-control" id="modalawal">
       </div>
 
       <div class="form-group">
@@ -250,12 +250,17 @@
   
       <div class="form-group">
         <label for="total">Total</label>
-        <input type="text" class="form-control" id="modaltotal">
+        <input readonly type="text" class="form-control" id="modaltotal">
       </div>
 
       <div class="form-group">
         <label for="pembayaran">Pembayaran</label>
         <input type="text" class="form-control" id="modalpembayaran">
+      </div>
+
+      <div class="form-group">
+        <label for="kembalian">Kembalian</label>
+        <input type="text" class="form-control" id="modalkembalian">
       </div>
   
             <div class="modal-footer">
@@ -406,6 +411,7 @@
             document.getElementById('modaldiskon').value = diskon[i]
             document.getElementById('modaltotal').value = total[i]
             document.getElementById('modalpembayaran').value = pembayaran[i]
+            document.getElementById('modalkembalian').value = kembalian[i]
 
             index.push(i)
           }
@@ -415,9 +421,10 @@
             var simpannama = document.getElementById('modalnama').value
             var simpanbanyak = document.getElementById('modalbanyak').value
             var simpanawal = document.getElementById('modalawal').value
-            var simpandiskon = document.getElementById('modaldiskon').value 
+            var simpandiskon = document.getElementById('modaldiskon').value
             var simpantotal = document.getElementById('modaltotal').value 
             var simpanpembayaran = document.getElementById('modalpembayaran').value 
+            var simpankembalian = document.getElementById('modalkembalian').value 
 
             namapembeli[index] = simpanpembeli
             namaproduk[index] = simpannama
@@ -426,6 +433,7 @@
             diskon[index] = simpandiskon
             total[index] = simpantotal
             pembayaran[index] = simpanpembayaran
+            kembalian[index] = simpankembalian
 
             index.pop()
           }
