@@ -15,6 +15,7 @@
             margin-bottom: 0px;
             margin-left: 125px;
             margin-right: 125px;
+            font-family:Arial, Helvetica, sans-serif;
         }
       .containeer{
         text-align: center;
@@ -104,7 +105,7 @@
                     </div>
                     <div class="flip-card-back">
                       <h1>Playstation 4</h1> 
-                      <p>Harga : Rp. 5.000.000,-</p> 
+                      <p>Harga : Rp. 3.000.000,-</p> 
                     </div>
                   </div>
                 </div>
@@ -133,6 +134,7 @@
                   </div>
                 </div>
               </div>
+
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
       <h1 style="text-align:center;">Form Input</h1>
@@ -224,11 +226,12 @@
 
           <label for="namaproduk">Nama Produk</label>
           <select class="form-control" id="modalnama">
-            <option value="PS3">PS3</option>
-            <option value="PS4">PS4</option>
-            <option value="PS2">PS2</option>
-            <option value="xbox360">Xbox360</option>
+            <option value="PS3" data-price = "1500000">PS3</option>
+            <option value="PS4" data-price = "3000000">PS4</option>
+            <option value="PS2" data-price = "500000">PS2</option>
+            <option value="xbox360" data-price = "2000000">Xbox360</option>
           </select>
+
 
       <div class="form-group">
         <label for="berapabanyak">Berapa Banyak</label>
@@ -353,6 +356,7 @@
                     "<td>"+
                       "<button class='btnn btn-warning' data-toggle='modal' data-target='#modal' onclick='editdata(" +i+")'>Edit</button>" +
                       "<button class='btnn btn-danger' onclick = 'hapus("+i+")' >Hapus</button>"+
+                      "<button class='btnn btn-primary' onclick = 'detail("+i+")' >Detail</button>"+
                     "</td>"+
                 "</tr>"
             }
