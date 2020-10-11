@@ -13,8 +13,8 @@
     body{
             margin-top: 0px;
             margin-bottom: 0px;
-            margin-left: 125px;
-            margin-right: 125px;
+            margin-left: 100px;
+            margin-right: 100px;
             font-family:Arial, Helvetica, sans-serif;
         }
       .containeer{
@@ -28,12 +28,14 @@
       }
         .container{
             width: 600px;
-            height: 670px;
+            height: 700px;
             border-style: double;
             font-family: 'Times New Roman', Times, serif;
             border: 2,2px solid black;
             outline-color: grey;
             outline-width: thin;
+            background-color: rgb(67, 67, 245);
+            
         }
         .flip-card {
         background-color: transparent;
@@ -70,9 +72,29 @@
         }
 
         .flip-card-back {
-        background-color: black;
+        background-color: rgb(67, 67, 245);
         color: white;
         transform: rotateY(180deg);
+        }
+        .cart {
+            width: 300px;
+            margin: 10px;
+            margin-left: 10px;
+        }
+        .tit {
+            width: 100px;
+            padding-left: 20px;
+        }
+        .headere{
+          background-color: rgb(67, 67, 245);
+        }
+        .ww{
+          background-color: rgb(67, 67, 245);
+          opacity: 0.8;
+        }
+        .www{
+          background-color:rgb(67, 67, 245);
+          opacity: 0.6;
         }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -80,65 +102,75 @@
   <body>
 
     <div>
-      <h1 style="text-align:center;">North Store</h1>
-      <h3 style="text-align: center;">List Harga</h3><br>
-      <h4 style="text-align:center;">BUY 2 GET DISCOUNT 20% FOR ALL ITEM</h4><br>
+      <h1 style="text-align:center;" class="headere">North Store</h1>
+      <h3 style="text-align: center;" class="ww">List Harga</h3>
+      <h4 style="text-align:center;" class="www">BUY 2 GET DISCOUNT 20% FOR ALL ITEM</h4><br>
     </div>
     <div>
+      <br>
               <div class="flip-card" style="float: left;">
+                <button class="btn btn-primary" id="button1" onclick="add(1)">Add</button>
                   <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <p>Playstation 3</p>
                       <img src="ps3.jpg" alt="Avatar" style="width:250px;height:250px;">
                     </div>
                     <div class="flip-card-back">
-                      <h1>Playstation 3</h1>
-                      <p>Harga : Rp. 2.500.000,-</p> 
+                      <h1 id="brand1">Playstation 3</h1>
+                      <p id="price1">Price : Rp. 2.500.000,-</p> 
+                      <input type="number" name="quantity1" id="quantity1" min="1" max="99" value="1">
                     </div>
                   </div>
                 </div>
-              <div class="flip-card" style="float: left;margin-left: 30px;">
+              <div class="flip-card" style="float: left;margin-left: 50px;">
+                <button class="btn btn-primary" id="button2" onclick="add(2)">Add</button>
                   <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <p>Playstation 4</p>
                       <img src="p4.jpg" alt="Avatar" style="width:250px;height:250px;">
                     </div>
                     <div class="flip-card-back">
-                      <h1>Playstation 4</h1> 
-                      <p>Harga : Rp. 3.000.000,-</p> 
+                      <h1 id="brand2">Playstation 4</h1> 
+                      <p id="price2">Price : Rp. 3.000.000,-</p> 
+                      <input type="number" name="quantity2" id="quantity2" min="1" max="99" value="1">
                     </div>
                   </div>
                 </div>
               <div class="flip-card" style="float: right;">
+                <button class="btn btn-primary" id="button3" onclick="">Add</button>
                   <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <p>Xbox 360<sup>o</sup></p>
                       <img src="xbox.jpg" alt="Avatar" style="width:250px;height:250px;">
                     </div>
                     <div class="flip-card-back">
-                      <h1>Xbox 360<sup>o</sup></h1> 
-                      <p>Harga : Rp. 3.500.000,-</p>
+                      <h1 id="brand3">Xbox 360<sup>o</sup></h1> 
+                      <p id="price3">Price : Rp. 3.500.000,-</p>
+                      <input type="number" name="quantity3" id="quantity3" min="1" max="99" value="1">
                     </div>
                   </div>
                 </div>
-              <div class="flip-card" style="float: right;margin-right: 30px;">
+              <div class="flip-card" style="float: right;margin-right: 50px;">
+                <button class="btn btn-primary" id="button4">Add</button>
                   <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <p>Playstation 2</p>
                       <img src="ps2.jpg" alt="Avatar" style="width:250px;height:250px;">
                     </div>
                     <div class="flip-card-back">
-                      <h1>Playstation 2</h1> 
-                      <p>Harga : Rp. 500.000,-</p> 
+                      <h1 id="brand4">Playstation 2</h1> 
+                      <p id="price4">Price : Rp. 500.000,-</p> 
+                      <input type="number" name="quantity4" id="quantity4" min="1" max="99" value="1">
                     </div>
                   </div>
                 </div>
               </div>
 
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-      <h1 style="text-align:center;">Form Input</h1>
+              <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      
     <div class="container">
+      <h1 style="text-align:center;">Form Input</h1>
         <div class="form-group">
             <label for="namapembeli">Nama Pembeli</label>
             <input type="text" class="form-control" id="txt_namapembeli">
@@ -181,6 +213,7 @@
       <button class="btn btn-dark" onclick="add()">Simpan</button>
 
     </div>
+    <br><br><br>
     
     
       <div class="containeer">
@@ -242,11 +275,6 @@
         <label for="hargaproduk">Harga Awal</label>
         <input readonly type="" class="form-control" id="modalawal">
       </div>
-
-      <div class="form-group">
-        <label for="diskon">Diskon</label>
-        <input type="" class="form-control" id="modaldiskon">
-      </div>
   
       <div class="form-group">
         <label for="total">Total</label>
@@ -256,11 +284,6 @@
       <div class="form-group">
         <label for="pembayaran">Pembayaran</label>
         <input type="text" class="form-control" id="modalpembayaran">
-      </div>
-
-      <div class="form-group">
-        <label for="kembalian">Kembalian</label>
-        <input type="text" class="form-control" id="modalkembalian">
       </div>
   
             <div class="modal-footer">
@@ -408,10 +431,10 @@
             document.getElementById('modalnama').value = namaproduk[i]
             document.getElementById('modalbanyak').value = berapabanyak[i]
             document.getElementById('modalawal').value = hargaawal[i] 
-            document.getElementById('modaldiskon').value = diskon[i]
+            document.getElementById('modaldiskon').value = diskon[i] 
             document.getElementById('modaltotal').value = total[i]
             document.getElementById('modalpembayaran').value = pembayaran[i]
-            document.getElementById('modalkembalian').value = kembalian[i]
+            document.getElementById('modalkembalian').value = kembalian[i] 
 
             index.push(i)
           }
@@ -424,7 +447,7 @@
             var simpandiskon = document.getElementById('modaldiskon').value
             var simpantotal = document.getElementById('modaltotal').value 
             var simpanpembayaran = document.getElementById('modalpembayaran').value 
-            var simpankembalian = document.getElementById('modalkembalian').value 
+            var simpankembalian = document.getElementById('modalkembalian').value
 
             namapembeli[index] = simpanpembeli
             namaproduk[index] = simpannama
@@ -434,6 +457,8 @@
             total[index] = simpantotal
             pembayaran[index] = simpanpembayaran
             kembalian[index] = simpankembalian
+
+            showData()
 
             index.pop()
           }
