@@ -431,10 +431,8 @@
             document.getElementById('modalnama').value = namaproduk[i]
             document.getElementById('modalbanyak').value = berapabanyak[i]
             document.getElementById('modalawal').value = hargaawal[i] 
-            document.getElementById('modaldiskon').value = diskon[i] 
             document.getElementById('modaltotal').value = total[i]
             document.getElementById('modalpembayaran').value = pembayaran[i]
-            document.getElementById('modalkembalian').value = kembalian[i] 
 
             index.push(i)
           }
@@ -444,19 +442,15 @@
             var simpannama = document.getElementById('modalnama').value
             var simpanbanyak = document.getElementById('modalbanyak').value
             var simpanawal = document.getElementById('modalawal').value
-            var simpandiskon = document.getElementById('modaldiskon').value
             var simpantotal = document.getElementById('modaltotal').value 
             var simpanpembayaran = document.getElementById('modalpembayaran').value 
-            var simpankembalian = document.getElementById('modalkembalian').value
 
             namapembeli[index] = simpanpembeli
             namaproduk[index] = simpannama
             berapabanyak[index] = simpanbanyak
             hargaawal[index] = simpanawal
-            diskon[index] = simpandiskon
             total[index] = simpantotal
             pembayaran[index] = simpanpembayaran
-            kembalian[index] = simpankembalian
 
             showData()
 
